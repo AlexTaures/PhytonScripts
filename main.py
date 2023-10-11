@@ -31,7 +31,6 @@
 
 #################################
 import tkinter as tk
-from tkinter import messagebox
 import pyperclip
 
 # Función para generar la clave a partir de la URL ingresada
@@ -74,14 +73,19 @@ def cerrar():
     root.destroy()
 
 #valores generales
-anchokey = 30
+anchokey = 40
+bgBoton = 'sky blue'
+fgBoton = 'dodger blue'
+bgApp = 'dodger blue'
+fgText = 'snow'
 
 # Crear la ventana principal
 root = tk.Tk()
 root.title("Generador de keys")
+root.configure(bg=bgApp)
 
 # Etiqueta 1 en la fila 0, columna 0
-etiqueta1 = tk.Label(root, text="Ingresa la URL")
+etiqueta1 = tk.Label(root, text="Ingresa la URL", bg=bgApp, fg=fgText,font=("Arial", 12, "bold"))
 etiqueta1.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
 
 # Campo de entrada en la fila 1, columna 0
@@ -89,27 +93,27 @@ urlInput = tk.Entry(root, width = anchokey)
 urlInput.grid(row=1, column=0, padx=5, pady=5)
 
 # Botón en la fila 1, columna 1
-botonGenerar = tk.Button(root, text="Generar", command=generar_keys)
+botonGenerar = tk.Button(root, text="Generar", command=generar_keys, bg='midnight blue', fg=fgText)
 botonGenerar.grid(row=1, column=1, padx=5, pady=5)
 
 #clave 1
-keyText1 = tk.Label(root, text="clave 1", font=("Arial", 9), width = anchokey, anchor="sw")
+keyText1 = tk.Label(root, text="clave 1", font=("Arial", 9), width = anchokey, anchor="sw", bg=bgApp, fg=fgText)
 keyText1.grid(row=2, column=0, padx=5, pady=5)
-btnCopiar1 = tk.Button(root, text="Copiar", command=lambda:copiarClave(1))
+btnCopiar1 = tk.Button(root, text="Copiar", command=lambda:copiarClave(1), bg=bgBoton, fg=fgBoton, font=("Arial", 9, "bold"))
 btnCopiar1.grid(row=2, column=1, padx=5, pady=5)
 btnCopiar1.config(state=tk.DISABLED)
 
 #clave 2
-keyText2 = tk.Label(root, text="clave 2", font=("Arial", 9), width = anchokey, anchor="sw")
+keyText2 = tk.Label(root, text="clave 2", font=("Arial", 9), width = anchokey, anchor="sw", bg=bgApp, fg=fgText)
 keyText2.grid(row=3, column=0, padx=0, pady=5)
-btnCopiar2 = tk.Button(root, text="Copiar", command=lambda:copiarClave(2))
+btnCopiar2 = tk.Button(root, text="Copiar", command=lambda:copiarClave(2), bg=bgBoton, fg=fgBoton, font=("Arial", 9, "bold"))
 btnCopiar2.grid(row=3, column=1, padx=5, pady=5)
 btnCopiar2.config(state=tk.DISABLED)
 
 #SSH
-sshText = tk.Label(root, text="ssh", font=("Arial", 9), width = anchokey, anchor="sw")
+sshText = tk.Label(root, text="ssh", font=("Arial", 9), width = anchokey, anchor="sw", bg=bgApp, fg=fgText)
 sshText.grid(row=4, column=0, padx=5, pady=5)
-btnSSH = tk.Button(root, text="Copiar", command=lambda:copiarClave(3))
+btnSSH = tk.Button(root, text="Copiar", command=lambda:copiarClave(3), bg=bgBoton, fg=fgBoton, font=("Arial", 9, "bold")    )
 btnSSH.grid(row=4, column=1, padx=5, pady=5)
 btnSSH.config(state=tk.DISABLED)
 
