@@ -83,6 +83,7 @@ fgText = 'snow'
 root = tk.Tk()
 root.title("Generador de keys")
 root.configure(bg=bgApp)
+root.resizable(width=False, height=False)
 
 # Etiqueta 1 en la fila 0, columna 0
 etiqueta1 = tk.Label(root, text="Ingresa la URL", bg=bgApp, fg=fgText,font=("Arial", 12, "bold"))
