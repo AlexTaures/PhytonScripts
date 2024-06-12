@@ -3,7 +3,7 @@ import tkinter as tk
 import pyperclip
 import csv
 
-keys_file = 'keys2.csv'
+keys_file = '/home/alexander/Escritorio/Python/PhytonScripts/siapKeys.csv'
 
 # Función para generar la clave a partir de la URL ingresada
 def generar_keys():
@@ -31,8 +31,12 @@ def generar_keys():
             btnOtraClave.config(text='Agregar clave guardada')
             btnCopiarSave.config(state=tk.DISABLED)
 
-        keyText1.config(text = 's1s'+str+'-s14p')
-        keyText2.config(text = 's14p'+str+'-s14p')
+        keyText1.config(text = 's1s'+ "*" * (len(str)+4))
+        keyText2.config(text = 's14p'+ "*" * (len(str)+4))
+        hiddenInput1.delete(0, tk.END) 
+        hiddenInput1.insert(0,'s1s'+str+'-s14p')
+        hiddenInput2.delete(0, tk.END) 
+        hiddenInput2.insert(0,'s14p'+str+'-s14p')
         sshText.config(text = 'ssh siap@' + sshUrl)
         btnCopiar1.config(state=tk.NORMAL)
         btnCopiar2.config(state=tk.NORMAL)
@@ -50,10 +54,10 @@ def generar_keys():
 # Función para copiar el texto al portapapeles
 def copiarClave(valor):
     if valor == 1:
-        clave = keyText1.cget('text')
+        clave = hiddenInput1.get()
         btnCopiar1.config(state=tk.DISABLED)
     elif valor == 2:
-        clave = keyText2.cget('text')
+        clave = hiddenInput2.get()
         btnCopiar2.config(state=tk.DISABLED)
     elif valor == 3:
         clave = sshText.cget('text')
@@ -62,9 +66,11 @@ def copiarClave(valor):
         clave = hiddenInputSave.get()
         btnCopiarSave.config(state=tk.DISABLED)
     else:
-        clave = ""  # Definir un valor por defecto si valor no coincide con 1, 2 o 3
+        clave = None  # Definir un valor por defecto si valor no coincide con 1, 2 o 3
 
-    pyperclip.copy(clave)
+    if clave:
+        pyperclip.copy(clave)
+        pass
 
 # Función para cerrar la aplicación
 def cerrar():
@@ -197,6 +203,8 @@ keyText1.grid(row=2, column=0, padx=5, pady=5)
 btnCopiar1 = tk.Button(root, text="Copiar", command=lambda:copiarClave(1), bg=bgBoton, fg=fgBoton, font=("Arial", 9, "bold"))
 btnCopiar1.grid(row=2, column=1, padx=5, pady=5)
 btnCopiar1.config(state=tk.DISABLED)
+hiddenInput1 = tk.Entry(root)
+hiddenInput2 = tk.Entry(root)
 
 #clave 2
 keyText2 = tk.Label(root, text="clave 2", font=("Arial", 9), width = anchokey, anchor="sw", bg=bgApp, fg=fgText)
